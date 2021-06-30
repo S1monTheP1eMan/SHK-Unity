@@ -7,6 +7,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _speed;
 
     private Vector2 _direction;
+    private const string HorizontalAxis = "Horizontal";
+    private const string VerticalAxis = "Vertical";
 
     private void Update()
     {
@@ -15,26 +17,24 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move()
     {
-        float horizontalMovement = Input.GetAxisRaw("Horizontal");
-        float verticalMovement = Input.GetAxisRaw("Vertical");
+        float horizontalMovement = Input.GetAxisRaw(HorizontalAxis);
+        float verticalMovement = Input.GetAxisRaw(VerticalAxis);
         _direction = new Vector2(horizontalMovement, verticalMovement);
 
         transform.Translate(_direction * _speed * Time.deltaTime);
     }
 
-    private IEnumerator ChangeSpeed(float time, float value)
+    private IEnumerator BoostSpeed(float time, float value)
     {
-        var waitForSeconds = new WaitForSeconds(time);
-
         _speed *= value;
 
-        yield return waitForSeconds;
+        yield return new WaitForSeconds(time);
 
         _speed /= value;
     }
 
-    public void StartChangeSpeed(float time, float value)
+    public void StartBoostSpeed(float time, float value)
     {
-        StartCoroutine(ChangeSpeed(time, value));
+        StartCoroutine(BoostSpeed(time, value));
     }
 }

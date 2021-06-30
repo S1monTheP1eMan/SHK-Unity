@@ -9,7 +9,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void Start()
     {
-        SetTargetPosition();
+        ApplyRandomTargetPosition();
     }
 
     private void Update()
@@ -17,10 +17,10 @@ public class EnemyMovement : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, _target, _speed * Time.deltaTime);
 
         if (transform.position == _target)
-            SetTargetPosition();
+            ApplyRandomTargetPosition();
     }
 
-    private void SetTargetPosition()
+    private void ApplyRandomTargetPosition()
     {
         _target = Random.insideUnitCircle * _targetAreaRadius;
     }

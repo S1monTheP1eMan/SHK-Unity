@@ -12,16 +12,16 @@ public class GameOver : MonoBehaviour
     private void OnEnable()
     {
         foreach (var enemy in _enemies)
-            enemy.Died += OnEnemyDied;
+            enemy.EnemyDying += OnEnemyDying;
     }
 
     private void OnDisable()
     {
         foreach (var enemy in _enemies)
-            enemy.Died -= OnEnemyDied;
+            enemy.EnemyDying -= OnEnemyDying;
     }
 
-    private void OnEnemyDied(Enemy enemy)
+    private void OnEnemyDying(Enemy enemy)
     {
         _enemies.Remove(enemy);
 

@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
     {
         if (collision.TryGetComponent<Enemy>(out Enemy enemy))
         {
-            _playerMovement.StartChangeSpeed(_boostDuration, _boostMultiplier);
+            _playerMovement.StartBoostSpeed(_boostDuration, _boostMultiplier);
         }
     }
 }
